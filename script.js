@@ -14,7 +14,7 @@
 
   const releaseLinks = window.AFROPX_RELEASE_LINKS || {};
   document.querySelectorAll('[data-release-link]').forEach((link) => {
-    const url = String(releaseLinks[link.dataset.releaseLink] || '').trim();
+    const url = String(releaseLinks[link.dataset.releaseLink] || link.getAttribute('href') || '').trim();
     const note = link.querySelector('[data-release-note]');
 
     if (url) {
