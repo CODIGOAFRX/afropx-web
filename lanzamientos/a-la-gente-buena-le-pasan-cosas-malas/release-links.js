@@ -1,4 +1,4 @@
 window.AFROPX_RELEASE_LINKS = {
-  presave: "",
+  presave: "https://orcd.co/algblpcm",
   premiere: ""
 };
