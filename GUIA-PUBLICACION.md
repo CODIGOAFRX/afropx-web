@@ -2,46 +2,25 @@
 
 Esta guía deja la web publicada con **GitHub + Cloudflare Pages + dominio propio**. No hace falta contratar un servidor ni pagar Vercel. Cloudflare Pages es suficiente para esta web y publicará automáticamente cada cambio que se suba a GitHub.
 
-## 1. Elegir y comprar el dominio
+## 1. Dominio configurado
 
-La recomendación principal es **`afropx.art`**.
-
-La extensión `.artist` no existe actualmente como dominio de primer nivel, por lo que `afropx.artist` no se puede registrar. Sí existen `.art` y `.audio`. Orden recomendado:
-
-1. `afropx.art`
-2. `afropx.com`
-3. `afropx.es`
-4. `afropx.audio`
-
-La disponibilidad y el precio pueden cambiar en cualquier momento. Compruébalos justo antes de pagar:
-
-1. Entra en el panel de Cloudflare.
-2. Abre **Domain Registration**.
-3. Pulsa **Register Domains**.
-4. Busca `afropx.art` y las alternativas que quieras comparar.
-5. Revisa tanto el precio inicial como el precio anual de renovación.
-6. Compra el dominio elegido.
-
-No es obligatorio comprar el dominio antes de publicar: Cloudflare Pages dará primero una dirección gratuita parecida a `afropx-web.pages.dev`.
+El dominio definitivo es **`afropxmusic.com`** y ya responde mediante HTTPS. Todos los enlaces canónicos, vistas previas sociales y el sitemap utilizan este dominio.
 
 ## 2. Crear el repositorio en GitHub
 
 1. Inicia sesión en GitHub.
-2. Crea un repositorio nuevo llamado `afropx-web`.
-3. Puede ser público o privado. Si no quieres que otras personas vean el código, elige privado.
-4. Déjalo vacío: no marques la creación automática de README, `.gitignore` o licencia, porque esos archivos ya están en el proyecto.
+2. El repositorio actual es `CODIGOAFRX/afropx-web`.
+3. La rama de producción es `main`.
 
 ## 3. Subir la carpeta del proyecto a GitHub
 
-Abre PowerShell y ejecuta estos comandos uno a uno. Sustituye `TU-USUARIO` por tu nombre de usuario real de GitHub.
+Abre PowerShell y ejecuta estos comandos para publicar una actualización:
 
 ```powershell
 Set-Location "E:\MUSICA\AfroPX Web"
-git init -b main
 git add .
-git commit -m "Publica la web oficial de AfroPX"
-git remote add origin https://github.com/TU-USUARIO/afropx-web.git
-git push -u origin main
+git commit -m "Actualiza la web oficial de AfroPX"
+git push origin main
 ```
 
 Si Git pide iniciar sesión, completa el acceso a GitHub en la ventana que se abra. No introduzcas ni subas contraseñas o claves dentro de esta carpeta.
@@ -78,6 +57,8 @@ Revisa estas direcciones desde ordenador y móvil:
 
 - `https://afropx-web.pages.dev/`
 - `https://afropx-web.pages.dev/mixing/`
+- `https://afropx-web.pages.dev/lanzamientos/`
+- `https://afropx-web.pages.dev/lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/`
 
 El nombre exacto de `pages.dev` puede variar si `afropx-web` ya estuviera ocupado.
 
@@ -99,25 +80,23 @@ Cuando la web de `pages.dev` funcione:
 2. Entra en el proyecto `afropx-web`.
 3. Abre **Custom domains**.
 4. Pulsa **Set up a domain**.
-5. Escribe el dominio comprado, por ejemplo `afropx.art`.
+5. Escribe el dominio `afropxmusic.com`.
 6. Confirma la configuración.
 
 Si el dominio se ha comprado o ya se gestiona en la misma cuenta de Cloudflare, Cloudflare creará el registro DNS necesario. No añadas manualmente un CNAME antes de asociar el dominio desde **Custom domains**.
 
-Después añade también `www.afropx.art` como segundo dominio personalizado si quieres que funcione con `www`. El dominio principal puede ser la versión corta, sin `www`.
+Después añade también `www.afropxmusic.com` como segundo dominio personalizado si quieres que funcione con `www`. El dominio principal es la versión corta, sin `www`.
 
 Cloudflare emitirá el certificado HTTPS. Espera a que el estado del dominio y del certificado aparezca como activo antes de anunciar la dirección.
 
 ## 7. Ajustes finales de posicionamiento
 
-Cuando se conozca el dominio definitivo, conviene hacer una última edición en `index.html` y `mixing/index.html`:
+El proyecto ya incorpora estos ajustes para `afropxmusic.com`:
 
 - Añadir una etiqueta `canonical` con la dirección definitiva de cada página.
 - Convertir `og:image` en una dirección HTTPS absoluta.
-- Crear `sitemap.xml` con `/` y `/mixing/`.
+- Crear `sitemap.xml` con las cuatro rutas públicas.
 - Añadir la propiedad `og:url`.
-
-No se han fijado todavía esas direcciones para evitar publicar metadatos incorrectos antes de comprar el dominio.
 
 ## 8. Cómo actualizar la web después
 
@@ -142,8 +121,10 @@ Cloudflare Pages detectará el nuevo envío a la rama `main` y publicará autom�
 - [ ] HTTPS activo.
 - [ ] Página principal revisada en móvil y ordenador.
 - [ ] `/mixing/` revisado en móvil y ordenador.
+- [ ] `/lanzamientos/` y la landing del álbum revisadas en móvil y ordenador.
 - [ ] Correos, teléfono y perfiles sociales comprobados.
-- [ ] Metadatos finales añadidos cuando el dominio sea definitivo.
+- [ ] Enlaces de preguardado y estreno añadidos en `release-links.js` cuando estén disponibles.
+- [x] Metadatos finales configurados para `afropxmusic.com`.
 
 ## Si algo falla
 

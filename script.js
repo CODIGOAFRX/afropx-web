@@ -1,6 +1,7 @@
 (() => {
   const body = document.body;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const header = document.querySelector('[data-header]');
 
   window.addEventListener('load', () => {
     window.setTimeout(() => body.classList.add('is-loaded'), reduceMotion ? 0 : 250);
@@ -9,6 +10,27 @@
 
   document.querySelectorAll('[data-year]').forEach((node) => {
     node.textContent = new Date().getFullYear();
+  });
+
+  const releaseLinks = window.AFROPX_RELEASE_LINKS || {};
+  document.querySelectorAll('[data-release-link]').forEach((link) => {
+    const url = String(releaseLinks[link.dataset.releaseLink] || '').trim();
+    const note = link.querySelector('[data-release-note]');
+
+    if (url) {
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noreferrer';
+      link.classList.remove('is-unavailable');
+      link.removeAttribute('aria-disabled');
+      if (note) note.textContent = link.dataset.readyLabel || 'Abrir enlace';
+      return;
+    }
+
+    link.removeAttribute('href');
+    link.classList.add('is-unavailable');
+    link.setAttribute('aria-disabled', 'true');
+    if (note) note.textContent = 'Disponible pronto';
   });
 
   const menuButton = document.querySelector('.menu-toggle');
@@ -22,6 +44,7 @@
   menuButton?.addEventListener('click', () => {
     const open = body.classList.toggle('nav-open');
     menuButton.setAttribute('aria-expanded', String(open));
+    if (open) header?.classList.remove('is-hidden');
   });
 
   nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
@@ -38,14 +61,16 @@
     });
   }
 
-  const header = document.querySelector('[data-header]');
   let previousY = window.scrollY;
   let ticking = false;
 
   const updateHeader = () => {
     const currentY = window.scrollY;
     const movingDown = currentY > previousY && currentY > 140;
-    if (!body.classList.contains('nav-open')) header?.classList.toggle('is-hidden', movingDown);
+    const artistHasLeftTop = body.classList.contains('artist-page') && currentY > 80;
+    if (!body.classList.contains('nav-open')) {
+      header?.classList.toggle('is-hidden', artistHasLeftTop || movingDown);
+    }
     previousY = currentY;
     ticking = false;
   };
@@ -56,6 +81,7 @@
       ticking = true;
     }
   }, { passive: true });
+  window.requestAnimationFrame(updateHeader);
 
   if (!reduceMotion) {
     const parallaxImages = document.querySelectorAll('.about-image img, .release-art img');
