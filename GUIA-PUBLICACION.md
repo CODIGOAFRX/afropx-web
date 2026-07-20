@@ -123,7 +123,7 @@ Cloudflare Pages detectará el nuevo envío a la rama `main` y publicará autom�
 - [ ] `/mixing/` revisado en móvil y ordenador.
 - [ ] `/lanzamientos/` y la landing del álbum revisadas en móvil y ordenador.
 - [ ] Correos, teléfono y perfiles sociales comprobados.
-- [x] Enlace de preguardado añadido en `release-links.js`.
+- [x] Enlace de preguardado añadido en la configuración de la landing.
 - [ ] Enlace del estreno en YouTube añadido cuando esté disponible.
 - [x] Metadatos finales configurados para `afropxmusic.com`.
 

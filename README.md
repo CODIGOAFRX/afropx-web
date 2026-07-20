@@ -32,7 +32,7 @@ La guía completa está en [`GUIA-PUBLICACION.md`](GUIA-PUBLICACION.md).
 - `index.html`: página de artista.
 - `mixing/index.html`: servicios de Pedro como ingeniero de audio.
 - `lanzamientos/index.html`: archivo y acceso a los lanzamientos.
-- `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/release-links.js`: enlaces editables de preguardado y estreno.
+- `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/index.html`: landing y configuración editable de los enlaces de preguardado y estreno.
 - `styles.css`: diseño y adaptación responsive.
 - `script.js`: menú, transiciones y pequeños efectos.
 - `assets/`: fotografías, arte, icono y vista previa social.
@@ -56,4 +56,4 @@ El correo de Mixing solo aparece en el área `/mixing/`, y el correo artístico 
 
 ## Activar los enlaces del nuevo álbum
 
-Abrir `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/release-links.js` y pegar las URL entre las comillas de `presave` y `premiere`. Mientras estén vacías, la web muestra esos botones como "Disponible pronto" y evita dirigir al público a un enlace incorrecto.
+Abrir `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/index.html` y editar las URL de `presave` y `premiere` dentro de `window.AFROPX_RELEASE_LINKS`. Mientras una URL esté vacía, la web muestra ese botón como "Disponible pronto" y evita dirigir al público a un enlace incorrecto.
