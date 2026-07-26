@@ -1,59 +1,105 @@
 # AfroPX Web
 
-Web oficial de **AfroPX**, con una sección independiente de servicios profesionales de audio en `/mixing/`.
+Web oficial de AfroPX y plataforma de trabajo para Pedro / Audio. Mantiene la estética editorial en negro, blanco y rojo e incorpora lanzamientos, smart links, reservas, herramientas promocionales y un panel privado.
 
-Dominio de producción: **https://afropxmusic.com/**
+Dominio previsto: [afropxmusic.com](https://afropxmusic.com/)
 
-## Estado del proyecto
+## Estado
 
-- Web estática lista para producción: no requiere Node.js, base de datos ni servidor propio.
-- Página principal de artista en `index.html`.
-- Servicios de mezcla y mastering en `mixing/index.html`.
-- Directorio de lanzamientos en `lanzamientos/index.html`.
-- Smart link del álbum en `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/index.html`.
-- Diseño adaptable a móvil, tablet y escritorio.
-- Imágenes optimizadas en WebP.
-- Enlaces externos a Spotify, YouTube e Instagram.
-- Configuración de cabeceras para Cloudflare Pages en `_headers`.
-- Sin rutas locales, direcciones `localhost`, claves ni dependencias privadas.
+La implementación y el build están terminados y funcionan en local. **La reserva no debe activarse en producción** hasta completar los datos legales, crear D1 y configurar Turnstile, Resend y Cloudflare Access. Consulta [configuración manual pendiente](docs/MANUAL-PENDING.md) y la [lista previa al despliegue](docs/DEPLOYMENT-CHECKLIST.md).
 
-## Publicación recomendada
+## Qué incluye
 
-La combinación recomendada es:
+- Web de artista, Mixing y archivo de lanzamientos.
+- Landing de *A la gente buena le pasan cosas malas* y smart link en `/escuchar/`.
+- Reserva en cinco pasos con disponibilidad real en `Europe/Madrid`.
+- D1 con protección transaccional frente a reservas dobles.
+- Correos interno y de recepción mediante Resend.
+- Turnstile, limitación de frecuencia y validación completa en servidor.
+- Panel privado bajo Cloudflare Access para reservas, estados, notas, bloqueos, excepciones, horarios y CSV.
+- Generadores locales de QR y tarjetas para redes.
+- Analítica propia agregada, sin cookies ni datos personales.
+- SEO técnico, datos estructurados, sitemap, cabeceras de seguridad y páginas legales.
+- Build público aislado en `dist/`; tests, migraciones y código servidor no se publican como archivos estáticos.
 
-1. **GitHub** para guardar el proyecto y su historial de cambios.
-2. **Cloudflare Pages** para publicar automáticamente cada cambio enviado a GitHub.
-3. **Cloudflare Registrar** para comprar y gestionar el dominio.
+## Inicio rápido local
 
-La guía completa está en [`GUIA-PUBLICACION.md`](GUIA-PUBLICACION.md).
+Requisitos: Node.js 22 o posterior.
 
-## Estructura
+```powershell
+npm ci
+Copy-Item wrangler.example.jsonc wrangler.jsonc
+Copy-Item .dev.vars.example .dev.vars
+npm run db:migrate:local
+npm run dev
+```
 
-- `index.html`: página de artista.
-- `mixing/index.html`: servicios de Pedro como ingeniero de audio.
-- `lanzamientos/index.html`: archivo y acceso a los lanzamientos.
-- `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/index.html`: landing y enlaces editables de preguardado y YouTube.
-- `styles.css`: diseño y adaptación responsive.
-- `script.js`: menú, transiciones y pequeños efectos.
-- `assets/`: fotografías, arte, icono y vista previa social.
-- `_headers`: seguridad y caché para Cloudflare Pages.
-- `.gitignore`: exclusiones para Git.
+Abre `http://127.0.0.1:8788/`. En desarrollo, los bypasses de Turnstile y administración solo funcionan cuando `ENVIRONMENT=development`.
 
-## Revisar la web en el ordenador
+## Comandos
 
-Para una revisión rápida se puede abrir `index.html`. Antes de publicar, es preferible verla mediante un servidor web local para reproducir el comportamiento real del alojamiento.
+| Comando | Uso |
+| --- | --- |
+| `npm run dev` | Construye y abre Pages Functions + D1 local |
+| `npm run build` | Optimiza, empaqueta, versiona assets, valida rutas y genera `dist/` |
+| `npm run check` | Audita HTML, canónicas, recursos y enlaces internos |
+| `npm run images` | Regenera variantes WebP responsive |
+| `npm run typecheck` | Comprueba TypeScript estricto |
+| `npm run lint` | Ejecuta tipos estrictos y auditoría estática del sitio |
+| `npm test` | Ejecuta Vitest |
+| `npm run verify` | Build, tipos y tests |
+| `npm run db:migrate:local` | Aplica migraciones a D1 local |
+| `npm run db:migrate:remote` | Aplica migraciones a D1 de producción |
 
-## Datos públicos incluidos
+## Fuente única de verdad
 
-- Instagram artístico: `@afrxpx`
-- Correo artístico: `contacto@afropxmusic.com`
-- Instagram del estudio: `@afrxstudios`
-- Teléfono de reservas: `685 585 342`
-- Correo de Mixing: publicado exclusivamente dentro de `/mixing/`
-- Portfolio de audio: playlist de YouTube facilitada para el proyecto
+Edita [config/site.js](config/site.js) para cambiar:
 
-El correo de Mixing solo aparece en el área `/mixing/`, y el correo artístico solo aparece en la web principal.
+- datos de contacto y redes;
+- lanzamientos, enlaces y canciones;
+- servicios, precios y FAQ;
+- horario inicial, duración, buffer y meses visibles;
+- smart links e integraciones futuras;
+- eventos analíticos permitidos y placeholders legales.
 
-## Activar los enlaces del nuevo álbum
+Los horarios modificados desde el panel se guardan en D1 y prevalecen sobre los valores iniciales. Los secretos nunca deben añadirse a `config/site.js`.
 
-Abrir `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/index.html` y editar el atributo `href` del botón correspondiente. Mientras un botón no tenga `href`, la web lo muestra como "Disponible pronto" y evita dirigir al público a un enlace incorrecto.
+## Estructura principal
+
+```text
+admin/                 panel privado estático
+assets/                estilos, imágenes, fuentes JS y bundles
+config/site.js         contenido y configuración central
+functions/             Cloudflare Pages Functions
+migrations/            esquema y datos iniciales de D1
+mixing/reservar/       flujo público de reserva
+escuchar/              smart links
+herramientas/          QR y tarjetas
+legal/                 privacidad, aviso legal y cookies
+scripts/               build, imágenes y comprobaciones
+tests/                 pruebas unitarias e integración
+dist/                  salida pública generada, ignorada por Git
+```
+
+## Documentación
+
+- [Arquitectura](docs/ARCHITECTURE.md)
+- [Cloudflare, D1, Resend, Turnstile y Access](docs/CLOUDFLARE-SETUP.md)
+- [Operaciones y edición de contenido](docs/OPERATIONS.md)
+- [Seguridad y privacidad](docs/SECURITY-PRIVACY.md)
+- [Pruebas](docs/TESTING.md)
+- [Checklist de despliegue](docs/DEPLOYMENT-CHECKLIST.md)
+- [Configuración manual pendiente](docs/MANUAL-PENDING.md)
+- [Decisiones técnicas](docs/DECISIONS.md)
+- [Registro de archivos](docs/CHANGELOG-FILES.md)
+
+## Datos públicos actuales
+
+- Artista: AfroPX — Instagram `@afrxpx`
+- Correo artístico y de reservas: `contacto@afropxmusic.com`
+- Mixing: Pedro — activo desde 2018
+- Correo de audio, publicado solo dentro de Mixing: `itsafrxpx@gmail.com`
+- Estudio: `@afrxstudios`
+- Teléfono: `685 585 342`
+
+No hay pagos activos. Stripe solo dispone de campos de estado y un adaptador futuro; no se muestra ningún cobro al público.

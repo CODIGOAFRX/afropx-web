@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generador de QR — AfroPX Tools</title>
+  <meta name="description" content="Genera códigos QR personalizados en PNG y SVG con la estética de AfroPX. Procesamiento local y sin subir tus imágenes.">
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://afropxmusic.com/herramientas/qr/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://afropxmusic.com/herramientas/qr/">
+  <meta property="og:title" content="Generador de QR — AfroPX">
+  <meta property="og:description" content="Crea y descarga QR personalizados en PNG y SVG.">
+  <meta property="og:image" content="https://afropxmusic.com/assets/images/og-afropx.jpg">
+  <meta property="og:image:alt" content="AfroPX Tools, generador de códigos QR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=852fb57224">
+  <link rel="stylesheet" href="/assets/css/advanced.css?v=fd2807e3a6">
+  <script src="/script.js?v=68d8513367" defer></script>
+  <script type="module" src="/assets/dist/site.js?v=8b7a8f977b"></script>
+  <script type="module" src="/assets/dist/qr.js?v=e10606fff9"></script>
+</head>
+<body class="tool-page">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <header class="site-header site-header-dark" data-header>
+    <a class="brand" href="/" aria-label="AfroPX, web oficial"><span>AFRO</span><span class="brand-mark">PX</span><small>/ TOOLS</small></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Abrir menú</span><span></span><span></span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+      <a href="/herramientas/tarjetas/">Tarjetas</a>
+      <a href="/escuchar/">Escuchar</a>
+      <a class="nav-cta" href="/">AfroPX ↗</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="tool-hero">
+      <p class="eyebrow">AfroPX Tools · 01</p>
+      <h1>QR<br><span>GENERATOR</span></h1>
+      <p>Genera, comprueba y descarga un QR sin enviar la URL ni el logotipo a servicios externos.</p>
+    </section>
+
+    <section class="tool-workspace" aria-labelledby="qr-form-title">
+      <form class="tool-controls" data-qr-form>
+        <div class="tool-controls-heading">
+          <span>01</span>
+          <div><h2 id="qr-form-title">Configura el código.</h2><p>Para máxima lectura, mantén alto contraste y suficiente margen.</p></div>
+        </div>
+        <div class="field field-wide">
+          <label for="qr-url">URL <span aria-hidden="true">*</span></label>
+          <input id="qr-url" name="url" type="url" inputmode="url" placeholder="https://afropxmusic.com/…" required>
+        </div>
+        <div class="tool-field-grid">
+          <div class="field">
+            <label for="qr-size">Tamaño</label>
+            <select id="qr-size" name="size">
+              <option value="512">512 × 512</option>
+              <option value="800" selected>800 × 800</option>
+              <option value="1200">1200 × 1200</option>
+              <option value="1600">1600 × 1600</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="qr-margin">Margen</label>
+            <select id="qr-margin" name="margin">
+              <option value="2">2 módulos</option>
+              <option value="3">3 módulos</option>
+              <option value="4" selected>4 módulos</option>
+              <option value="6">6 módulos</option>
+              <option value="8">8 módulos</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="qr-error">Corrección de errores</label>
+            <select id="qr-error" name="errorCorrection">
+              <option value="L">L · 7 %</option>
+              <option value="M">M · 15 %</option>
+              <option value="Q">Q · 25 %</option>
+              <option value="H" selected>H · 30 %</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="qr-logo">Logotipo <small>Opcional · máx. 2 MB</small></label>
+            <input id="qr-logo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" data-qr-logo>
+          </div>
+          <div class="field color-field">
+            <label for="qr-foreground">Código</label>
+            <input id="qr-foreground" name="foreground" type="color" value="#050505">
+          </div>
+          <div class="field color-field">
+            <label for="qr-background">Fondo</label>
+            <input id="qr-background" name="background" type="color" value="#ffffff">
+          </div>
+        </div>
+        <label class="consent-field">
+          <input name="transparent" type="checkbox">
+          <span>Fondo transparente <small>Comprueba siempre el contraste sobre el diseño final.</small></span>
+        </label>
+        <button class="button button-red" type="submit">Actualizar vista previa</button>
+      </form>
+
+      <div class="tool-preview qr-preview">
+        <div class="tool-preview-heading">
+          <span>02</span>
+          <div><h2>Vista previa.</h2><p data-qr-status role="status" aria-live="polite">Generando…</p></div>
+        </div>
+        <div class="qr-canvas-wrap">
+          <canvas data-qr-canvas width="800" height="800" aria-label="Vista previa del código QR"></canvas>
+        </div>
+        <p class="contrast-notice" data-qr-contrast></p>
+        <div class="tool-downloads">
+          <button class="button button-light" type="button" data-qr-download-png disabled>Descargar PNG ↓</button>
+          <button class="button button-outline" type="button" data-qr-download-svg disabled>Descargar SVG ↓</button>
+          <button class="text-button" type="button" data-qr-to-card disabled>Usar en una tarjeta →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-note">
+      <strong>Antes de imprimir.</strong>
+      <p>Escanea el resultado con dos dispositivos, evita deformarlo y no recortes el margen blanco. Un logotipo grande o colores de poco contraste pueden hacerlo ilegible.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer site-footer-studio">
+    <div class="footer-brand">AFRO<span>PX</span></div>
+    <div class="footer-links"><a href="/herramientas/tarjetas/">Tarjetas</a><a href="/escuchar/">Escuchar</a><a href="/legal/privacidad/">Privacidad</a><a href="/">Web oficial ↗</a></div>
+    <div class="footer-meta"><span>© <span data-year></span> AfroPX</span><a href="#main">Volver arriba ↑</a></div>
+  </footer>
+</body>
+</html>

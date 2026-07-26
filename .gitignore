@@ -15,3 +15,15 @@ Desktop.ini
 # Herramientas de despliegue local
 .wrangler/
 node_modules/
+wrangler.jsonc
+.dev.vars
+.env
+.env.*
+!.env.example
+!.dev.vars.example
+
+# Resultados locales
+/dist/
+coverage/
+test-results/
+playwright-report/

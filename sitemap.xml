@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://afropxmusic.com/</loc></url>
-  <url><loc>https://afropxmusic.com/mixing/</loc></url>
-  <url><loc>https://afropxmusic.com/lanzamientos/</loc></url>
-  <url><loc>https://afropxmusic.com/lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/</loc></url>
+  <url><loc>https://afropxmusic.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://afropxmusic.com/escuchar/</loc><priority>0.9</priority></url>
+  <url><loc>https://afropxmusic.com/lanzamientos/</loc><priority>0.9</priority></url>
+  <url><loc>https://afropxmusic.com/lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/</loc><priority>0.9</priority></url>
+  <url><loc>https://afropxmusic.com/mixing/</loc><priority>0.9</priority></url>
+  <url><loc>https://afropxmusic.com/mixing/reservar/</loc><priority>0.8</priority></url>
+  <url><loc>https://afropxmusic.com/herramientas/qr/</loc><priority>0.6</priority></url>
+  <url><loc>https://afropxmusic.com/herramientas/tarjetas/</loc><priority>0.6</priority></url>
+  <url><loc>https://afropxmusic.com/legal/privacidad/</loc><priority>0.3</priority></url>
+  <url><loc>https://afropxmusic.com/legal/aviso-legal/</loc><priority>0.3</priority></url>
+  <url><loc>https://afropxmusic.com/legal/cookies/</loc><priority>0.3</priority></url>
 </urlset>
