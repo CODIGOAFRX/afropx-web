@@ -14,10 +14,12 @@
   <meta property="og:image" content="https://afropxmusic.com/assets/images/algblpcm-og-final.jpg">
   <meta property="og:image:alt" content="Portada de A la gente buena le pasan cosas malas de AfroPX">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="../../assets/images/algblpcm-cover-final.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="../../styles.css?v=20260720-4">
-  <script src="../../script.js?v=20260720-4" defer></script>
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/images/algblpcm-cover-final.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="/styles.css?v=852fb57224">
+  <link rel="stylesheet" href="/assets/css/advanced.css?v=fd2807e3a6">
+  <script src="/script.js?v=68d8513367" defer></script>
+  <script type="module" src="/assets/dist/site.js?v=8b7a8f977b"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,15 +45,16 @@
   <div class="site-loader" aria-hidden="true"><span>:(</span></div>
 
   <header class="site-header" data-header>
-    <a class="brand" href="../../index.html" aria-label="Volver a AfroPX"><span>AFRO</span><span class="brand-mark">PX</span></a>
+    <a class="brand" href="/" aria-label="Volver a AfroPX"><span>AFRO</span><span class="brand-mark">PX</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       <span class="sr-only">Abrir menú</span><span></span><span></span>
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
       <a href="#acciones">Enlaces</a>
       <a href="#tracklist">Tracklist</a>
-      <a href="../index.html">Lanzamientos</a>
-      <a class="nav-cta" href="../../index.html">AfroPX ↗</a>
+      <a href="/escuchar/">Escuchar</a>
+      <a href="/lanzamientos/">Lanzamientos</a>
+      <a class="nav-cta" href="/">AfroPX ↗</a>
     </nav>
   </header>
 
@@ -59,7 +62,7 @@
     <section class="release-link-hero" id="top" aria-labelledby="album-title">
       <div class="release-link-visual">
         <figure class="release-cover image-reveal">
-          <img src="../../assets/images/algblpcm-cover-final.webp" alt="Portada del álbum A la gente buena le pasan cosas malas de AfroPX" width="1600" height="1600">
+          <img src="/assets/images/algblpcm-cover-final.webp" srcset="/assets/images/algblpcm-cover-final-480.webp 480w, /assets/images/algblpcm-cover-final-800.webp 800w, /assets/images/algblpcm-cover-final-1200.webp 1200w, /assets/images/algblpcm-cover-final.webp 1600w" sizes="(max-width: 900px) 100vw, 42vw" alt="Portada del álbum A la gente buena le pasan cosas malas de AfroPX" width="1600" height="1600">
           <figcaption>AFROPX / 12 CANCIONES / :(</figcaption>
         </figure>
       </div>
@@ -70,10 +73,10 @@
         <p class="release-lead reveal">Duelo, deseo, contradicción y supervivencia en doce canciones. Preguarda el álbum y vuelve aquí para todos sus enlaces y plataformas oficiales.</p>
 
         <div class="release-action-list reveal" id="acciones" aria-label="Enlaces del lanzamiento">
-          <a class="release-action release-action-primary" href="https://orcd.co/algblpcm" target="_blank" rel="noreferrer" data-release-link="presave" data-ready-label="Abrir preguardado">
+          <a class="release-action release-action-primary" href="https://orcd.co/algblpcm" target="_blank" rel="noreferrer" data-release-link="presave" data-ready-label="Abrir preguardado" data-track="platform_click" data-track-detail="presave">
             <span>01</span><strong>Preguardar el álbum</strong><em data-release-note>Disponible pronto</em><b>↗</b>
           </a>
-          <a class="release-action" data-release-link="youtube" data-ready-label="Abrir en YouTube">
+          <a class="release-action" data-release-link="youtube" data-ready-label="Abrir en YouTube" data-track="platform_click" data-track-detail="album-youtube">
             <span>02</span><strong>Álbum en YouTube</strong><em data-release-note>Disponible pronto</em><b>↗</b>
           </a>
           <a class="release-action" href="https://open.spotify.com/artist/0fYfgpQ71vAIvt8QoRjwd7" target="_blank" rel="noreferrer">
@@ -86,7 +89,14 @@
             <span>05</span><strong>Instagram</strong><em>@afrxpx</em><b>↗</b>
           </a>
         </div>
-        <p class="release-share-note reveal">Comparte esta página: <strong>afropxmusic.com/lanzamientos/a-la-gente-buena-le-pasan-cosas-malas</strong></p>
+        <div class="release-share-tools reveal">
+          <p class="release-share-note">Comparte esta página: <strong>afropxmusic.com/lanzamientos/a-la-gente-buena-le-pasan-cosas-malas</strong></p>
+          <div>
+            <button type="button" data-copy="current-url" data-copy-success="Enlace copiado" data-track-detail="album">Copiar enlace</button>
+            <button type="button" data-share="current-url" data-share-title="A la gente buena le pasan cosas malas — AfroPX" data-share-text="Preguarda el nuevo álbum de AfroPX" data-track-detail="album">Compartir ↗</button>
+            <a href="/escuchar/">Abrir todos los enlaces ↗</a>
+          </div>
+        </div>
       </div>
       <div class="release-giant-mark" aria-hidden="true">:(</div>
     </section>
@@ -116,7 +126,7 @@
 
   <footer class="site-footer site-footer-studio">
     <div class="footer-brand" aria-hidden="true">AFRO<span>PX</span></div>
-    <div class="footer-links"><a href="../index.html">Todos los lanzamientos ↗</a><a href="https://open.spotify.com/artist/0fYfgpQ71vAIvt8QoRjwd7" target="_blank" rel="noreferrer">Spotify ↗</a><a href="https://www.youtube.com/@afropxoficial" target="_blank" rel="noreferrer">YouTube ↗</a><a href="../../index.html">Web oficial ↗</a></div>
+    <div class="footer-links"><a href="/lanzamientos/">Todos los lanzamientos ↗</a><a href="/escuchar/">Escuchar</a><a href="https://open.spotify.com/artist/0fYfgpQ71vAIvt8QoRjwd7" target="_blank" rel="noreferrer">Spotify ↗</a><a href="https://www.youtube.com/@afropxoficial" target="_blank" rel="noreferrer">YouTube ↗</a><a href="/">Web oficial ↗</a><a href="/legal/privacidad/">Privacidad</a></div>
     <div class="footer-meta"><span>© <span data-year></span> AfroPX</span><a href="#top">Volver arriba ↑</a></div>
   </footer>
 </body>

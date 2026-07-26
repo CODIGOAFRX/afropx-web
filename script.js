@@ -55,6 +55,18 @@
   const revealItems = document.querySelectorAll('.reveal, .image-reveal');
   if (reduceMotion) {
     revealItems.forEach((item) => item.classList.add('is-visible'));
+  } else if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, {
+      rootMargin: '0px 0px -7% 0px',
+      threshold: 0.08
+    });
+    revealItems.forEach((item) => revealObserver.observe(item));
   } else {
     window.requestAnimationFrame(() => {
       window.setTimeout(() => revealItems.forEach((item) => item.classList.add('is-visible')), 120);
@@ -85,13 +97,20 @@
 
   if (!reduceMotion) {
     const parallaxImages = document.querySelectorAll('.about-image img, .release-art img');
-    window.addEventListener('scroll', () => {
+    let parallaxTicking = false;
+    const updateParallax = () => {
       parallaxImages.forEach((image) => {
         const rect = image.parentElement.getBoundingClientRect();
         if (rect.bottom < 0 || rect.top > window.innerHeight) return;
         const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -0.025;
         image.style.translate = `0 ${offset}px`;
       });
+      parallaxTicking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (parallaxTicking) return;
+      parallaxTicking = true;
+      window.requestAnimationFrame(updateParallax);
     }, { passive: true });
   }
 })();

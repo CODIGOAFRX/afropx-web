@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generador de tarjetas — AfroPX Tools</title>
+  <meta name="description" content="Crea tarjetas visuales de canciones para historias, posts y miniaturas. Descarga PNG en alta resolución desde tu navegador.">
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://afropxmusic.com/herramientas/tarjetas/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://afropxmusic.com/herramientas/tarjetas/">
+  <meta property="og:title" content="Generador de tarjetas — AfroPX">
+  <meta property="og:description" content="Crea piezas visuales de canciones en alta resolución sin subir tu portada.">
+  <meta property="og:image" content="https://afropxmusic.com/assets/images/algblpcm-og-final.jpg">
+  <meta property="og:image:alt" content="Portada de A la gente buena le pasan cosas malas de AfroPX">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=852fb57224">
+  <link rel="stylesheet" href="/assets/css/advanced.css?v=fd2807e3a6">
+  <script src="/script.js?v=68d8513367" defer></script>
+  <script type="module" src="/assets/dist/site.js?v=8b7a8f977b"></script>
+  <script type="module" src="/assets/dist/cards.js?v=6e18bce15f"></script>
+</head>
+<body class="tool-page card-tool-page">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <header class="site-header site-header-dark" data-header>
+    <a class="brand" href="/" aria-label="AfroPX, web oficial"><span>AFRO</span><span class="brand-mark">PX</span><small>/ TOOLS</small></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Abrir menú</span><span></span><span></span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+      <a href="/herramientas/qr/">QR</a>
+      <a href="/escuchar/">Escuchar</a>
+      <a class="nav-cta" href="/">AfroPX ↗</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="tool-hero">
+      <p class="eyebrow">AfroPX Tools · 02</p>
+      <h1>SHARE<br><span>CARDS</span></h1>
+      <p>Convierte una canción en una pieza lista para historia, publicación o miniatura. Todo se procesa en tu dispositivo.</p>
+    </section>
+
+    <section class="tool-workspace card-workspace" aria-labelledby="card-form-title">
+      <form class="tool-controls" data-card-form>
+        <div class="tool-controls-heading">
+          <span>01</span>
+          <div><h2 id="card-form-title">Construye la tarjeta.</h2><p>Los textos largos se ajustan automáticamente dentro de la zona segura.</p></div>
+        </div>
+        <div class="tool-field-grid">
+          <div class="field">
+            <label for="card-song">Canción</label>
+            <select id="card-song" name="song">
+              <option value="__custom__">Otra / escribir título</option>
+            </select>
+          </div>
+          <div class="field" hidden>
+            <label for="card-custom-song">Título personalizado</label>
+            <input id="card-custom-song" name="customSong" maxlength="120" placeholder="Nombre de la canción">
+          </div>
+          <div class="field">
+            <label for="card-artist">Artista</label>
+            <input id="card-artist" name="artist" value="AfroPX" maxlength="80">
+          </div>
+          <div class="field">
+            <label for="card-format">Formato</label>
+            <select id="card-format" name="format">
+              <option value="story">Historia · 1080 × 1920</option>
+              <option value="portrait">Post vertical · 1080 × 1350</option>
+              <option value="square">Cuadrado · 1080 × 1080</option>
+              <option value="horizontal">Horizontal · 1280 × 720</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="card-template">Plantilla</label>
+            <select id="card-template" name="template">
+              <option value="cut">Corte negro / rojo</option>
+              <option value="negative">Negativo blanco</option>
+              <option value="brutal">Bloque rojo</option>
+            </select>
+          </div>
+          <div class="field field-wide">
+            <label for="card-promo">Texto promocional <small>Opcional</small></label>
+            <textarea id="card-promo" name="promo" rows="3" maxlength="220" placeholder="Una frase, fecha o mensaje corto."></textarea>
+          </div>
+          <div class="field field-wide">
+            <label for="card-link">Enlace</label>
+            <input id="card-link" name="link" type="url" inputmode="url" placeholder="https://…">
+          </div>
+          <div class="field">
+            <label for="card-cta">Llamada a la acción</label>
+            <input id="card-cta" name="cta" value="ESCUCHAR AHORA" maxlength="32">
+          </div>
+          <div class="field">
+            <label for="card-cover">Portada <small>Opcional · máx. 12 MB</small></label>
+            <input id="card-cover" type="file" accept="image/png,image/jpeg,image/webp" data-card-cover>
+          </div>
+        </div>
+        <div class="check-grid">
+          <label class="consent-field"><input name="includeQr" type="checkbox"><span>Incluir QR</span></label>
+          <label class="consent-field"><input name="includeCta" type="checkbox" checked><span>Incluir llamada a la acción</span></label>
+        </div>
+        <button class="button button-red" type="submit">Actualizar tarjeta</button>
+        <p class="local-processing-note">La portada no sale de este navegador. Cierra la pestaña y los datos locales desaparecen.</p>
+      </form>
+
+      <div class="tool-preview card-preview-panel">
+        <div class="tool-preview-heading">
+          <span>02</span>
+          <div><h2>Vista previa.</h2><p data-card-status role="status" aria-live="polite">Preparando lienzo…</p></div>
+        </div>
+        <div class="card-canvas-wrap" data-card-preview>
+          <canvas data-card-canvas width="1080" height="1920" aria-label="Vista previa de la tarjeta"></canvas>
+          <span class="safe-zone" aria-hidden="true"></span>
+        </div>
+        <div class="tool-downloads">
+          <button class="button button-light" type="button" data-card-download disabled>Descargar PNG ↓</button>
+          <a class="text-button" href="/herramientas/qr/">Crear QR aparte →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer site-footer-studio">
+    <div class="footer-brand">AFRO<span>PX</span></div>
+    <div class="footer-links"><a href="/herramientas/qr/">QR</a><a href="/escuchar/">Escuchar</a><a href="/legal/privacidad/">Privacidad</a><a href="/">Web oficial ↗</a></div>
+    <div class="footer-meta"><span>© <span data-year></span> AfroPX</span><a href="#main">Volver arriba ↑</a></div>
+  </footer>
+</body>
+</html>

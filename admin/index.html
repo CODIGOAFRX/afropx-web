@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de reservas — AfroPX / Audio</title>
+  <meta name="description" content="Panel privado de gestión de reservas de Pedro / Audio.">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://afropxmusic.com/admin/">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=852fb57224">
+  <link rel="stylesheet" href="/assets/css/advanced.css?v=fd2807e3a6">
+  <script type="module" src="/assets/dist/admin.js?v=d3582cd4fa"></script>
+</head>
+<body class="admin-page">
+  <a class="skip-link" href="#admin-main">Saltar al contenido</a>
+  <header class="admin-header">
+    <a class="brand" href="/mixing/"><span>AFRO</span><span class="brand-mark">PX</span><small>/ PRIVATE</small></a>
+    <div><span>Panel de reservas</span><button type="button" data-admin-refresh>Actualizar ↻</button></div>
+  </header>
+
+  <main id="admin-main" class="admin-main">
+    <section class="admin-intro">
+      <div><p class="eyebrow">Pedro / Audio · Europe/Madrid</p><h1>RESERVAS</h1></div>
+      <p data-admin-status role="status" aria-live="polite">Validando acceso privado…</p>
+    </section>
+
+    <section aria-labelledby="admin-summary-title">
+      <div class="admin-section-heading"><span>01</span><h2 id="admin-summary-title">Resumen.</h2></div>
+      <div class="admin-summary" data-admin-summary></div>
+    </section>
+
+    <section aria-labelledby="admin-bookings-title">
+      <div class="admin-section-heading"><span>02</span><h2 id="admin-bookings-title">Solicitudes.</h2><button type="button" data-export-csv>Exportar CSV ↓</button></div>
+      <form class="admin-filters" data-admin-filters>
+        <label><span>Buscar</span><input name="q" type="search" placeholder="ID, nombre, correo o artista"></label>
+        <label><span>Estado</span><select name="status"><option value="">Todos</option><option value="pending">Pendiente</option><option value="confirmed">Confirmada</option><option value="rejected">Rechazada</option><option value="cancelled">Cancelada</option><option value="completed">Completada</option></select></label>
+        <label><span>Servicio</span><select name="service"><option value="">Todos</option><option value="recording-mix-master">Grabación + Mix + Master</option><option value="remote-mix-master">Mix + Master remoto</option><option value="mix">Mix</option><option value="master">Master</option><option value="project-pack">Pack 5+</option></select></label>
+        <label><span>Desde</span><input name="from" type="date"></label>
+        <label><span>Hasta</span><input name="to" type="date"></label>
+        <button type="submit">Aplicar filtros</button>
+      </form>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Fecha</th><th>ID</th><th>Cliente</th><th>Servicio</th><th>Precio</th><th>Estado</th><th></th></tr></thead>
+          <tbody data-admin-bookings><tr><td colspan="7">Cargando reservas…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="admin-grid" aria-label="Disponibilidad">
+      <div class="admin-panel">
+        <div class="admin-section-heading"><span>03</span><h2>Bloqueos.</h2></div>
+        <form class="admin-mini-form" data-block-form>
+          <label><span>Fecha</span><input name="date" type="date" required></label>
+          <label><span>Desde <small>vacío = día completo</small></span><input name="start" type="time"></label>
+          <label><span>Hasta</span><input name="end" type="time"></label>
+          <label class="wide"><span>Motivo privado</span><input name="reason" maxlength="300"></label>
+          <button type="submit">Bloquear fecha / franja</button>
+        </form>
+        <ul class="admin-compact-list" data-block-list></ul>
+      </div>
+
+      <div class="admin-panel">
+        <div class="admin-section-heading"><span>04</span><h2>Excepciones.</h2></div>
+        <form class="admin-mini-form" data-exception-form>
+          <label><span>Fecha</span><input name="date" type="date" required></label>
+          <label class="check-field"><input name="enabled" type="checkbox"><span>Abrir con horario especial</span></label>
+          <label><span>Desde</span><input name="start" type="time" value="09:00"></label>
+          <label><span>Último inicio</span><input name="lastStart" type="time" value="17:00"></label>
+          <label class="wide"><span>Motivo privado</span><input name="reason" maxlength="300"></label>
+          <button type="submit">Guardar excepción</button>
+        </form>
+        <ul class="admin-compact-list" data-exception-list></ul>
+      </div>
+    </section>
+
+    <section class="admin-panel admin-settings" aria-labelledby="admin-settings-title">
+      <div class="admin-section-heading"><span>05</span><h2 id="admin-settings-title">Horario y duración.</h2></div>
+      <form data-settings-form>
+        <div class="admin-setting-grid">
+          <label><span>Intervalo (min)</span><input name="slotIntervalMinutes" type="number" min="15" max="240" step="15" required></label>
+          <label><span>Duración provisional (min)</span><input name="defaultDurationMinutes" type="number" min="15" max="720" step="15" required></label>
+          <label><span>Margen entre sesiones (min)</span><input name="bufferMinutes" type="number" min="0" max="240" step="5" required></label>
+          <label><span>Meses visibles</span><input name="maxMonthsAhead" type="number" min="1" max="24" required></label>
+        </div>
+        <div class="weekly-grid" data-weekly-grid></div>
+        <button type="submit">Guardar disponibilidad</button>
+      </form>
+      <p class="admin-note">Al guardar, los horarios dejan de estar marcados como provisionales. Los cambios no mueven reservas ya creadas.</p>
+    </section>
+  </main>
+
+  <dialog class="booking-dialog" data-booking-dialog aria-labelledby="booking-dialog-title">
+    <div class="dialog-header"><div><span>Reserva</span><h2 id="booking-dialog-title" data-booking-dialog-title></h2></div><button type="button" data-dialog-close aria-label="Cerrar">×</button></div>
+    <dl class="admin-detail" data-booking-detail></dl>
+    <div class="admin-dialog-section">
+      <label for="private-note">Notas privadas</label>
+      <textarea id="private-note" data-booking-note rows="5" maxlength="4000"></textarea>
+      <button type="button" data-save-note>Guardar nota</button>
+    </div>
+    <div class="admin-dialog-section">
+      <h3>Cambiar estado</h3>
+      <div class="admin-actions" data-booking-actions></div>
+    </div>
+    <div class="admin-dialog-section">
+      <h3>Correos</h3>
+      <pre data-email-log></pre>
+      <button type="button" data-resend-email>Reenviar correos</button>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "afropx-web",
+  "compatibility_date": "2026-07-26",
+  "pages_build_output_dir": "dist",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "afropx-bookings",
+      // El UUID de cero permite trabajar en local. Sustitúyelo por el ID real antes de producción.
+      "database_id": "00000000-0000-0000-0000-000000000001",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "production",
+    "ALLOWED_ORIGINS": "https://afropxmusic.com,https://www.afropxmusic.com",
+    "BOOKING_NOTIFICATION_EMAIL": "contacto@afropxmusic.com",
+    "RESEND_FROM_EMAIL": "AfroPX <reservas@afropxmusic.com>",
+    "ADMIN_URL": "https://afropxmusic.com/admin/",
+    "TURNSTILE_BYPASS": "false",
+    "ADMIN_BYPASS": "false"
+  }
+}

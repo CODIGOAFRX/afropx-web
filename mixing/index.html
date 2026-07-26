@@ -14,16 +14,74 @@
   <meta property="og:image" content="https://afropxmusic.com/assets/images/og-afropx.jpg">
   <meta property="og:image:alt" content="Pedro, ingeniero de mezcla y mastering">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20260720-4">
-  <script src="../script.js?v=20260720-4" defer></script>
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=852fb57224">
+  <link rel="stylesheet" href="/assets/css/advanced.css?v=fd2807e3a6">
+  <script src="/script.js?v=68d8513367" defer></script>
+  <script type="module" src="/assets/dist/site.js?v=8b7a8f977b"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "name": "Pedro / Mixing & Mastering",
+        "url": "https://afropxmusic.com/mixing/",
+        "email": "contacto@afropxmusic.com",
+        "telephone": "+34685585342",
+        "founder": {
+          "@type": "Person",
+          "name": "Pedro",
+          "jobTitle": "Ingeniero de audio"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "name": "Grabación + Mix + Master",
+            "price": "80",
+            "priceCurrency": "EUR",
+            "unitText": "canción"
+          },
+          {
+            "@type": "Offer",
+            "name": "Mix + Master remoto",
+            "price": "60",
+            "priceCurrency": "EUR",
+            "unitText": "canción"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Puedo trabajar a distancia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. El servicio Mix + Master remoto está pensado para recibir pistas y referencias mediante un enlace de descarga."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿La solicitud queda confirmada al enviarla?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. La solicitud queda pendiente hasta que Pedro revise el material y confirme la sesión."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="mixing-page">
   <a class="skip-link" href="#main">Saltar al contenido</a>
   <div class="site-loader" aria-hidden="true"><span>MIX</span><span class="loader-x">/ MASTER</span></div>
 
   <header class="site-header site-header-dark" data-header>
-    <a class="brand" href="../index.html" aria-label="Volver a AfroPX">
+    <a class="brand" href="/" aria-label="Volver a AfroPX">
       <span>AFRO</span><span class="brand-mark">PX</span><small>/ AUDIO</small>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -34,7 +92,8 @@
       <a href="#tarifas">Tarifas</a>
       <a href="#portfolio">Trabajos</a>
       <a href="#proceso">Proceso</a>
-      <a class="nav-cta" href="../index.html">AfroPX ↗</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="/mixing/reservar/">Reserva tu sesión ↗</a>
     </nav>
   </header>
 
@@ -48,9 +107,10 @@
           <p>Desde 2018</p>
           <p>Sonido con intención.<br>Decisiones que sirven a la canción.</p>
         </div>
+        <a class="button button-red studio-booking-cta reveal" href="/mixing/reservar/" data-booking-link>Reserva tu sesión ↗</a>
       </div>
       <figure class="studio-portrait studio-portrait-double image-reveal">
-        <img src="../assets/images/drive-double.webp" alt="Doble silueta en espejo de Pedro sobre fondo blanco" width="1800" height="1350">
+        <img src="/assets/images/drive-double.webp" srcset="/assets/images/drive-double-640.webp 640w, /assets/images/drive-double-960.webp 960w, /assets/images/drive-double-1400.webp 1400w, /assets/images/drive-double.webp 1800w" sizes="(max-width: 900px) 100vw, 48vw" alt="Doble silueta en espejo de Pedro sobre fondo blanco" width="1800" height="1350">
         <figcaption>Pedro / Doble escucha / Audio engineer</figcaption>
       </figure>
       <div class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -103,21 +163,21 @@
           <h3>Grabación<br>+ Mix<br>+ Master</h3>
           <div class="price"><strong>80</strong><span>€</span><small>/ canción</small></div>
           <p>Sesión de grabación, mezcla completa y master final preparado para distribución.</p>
-          <a href="#contacto">Reservar cita ↓</a>
+          <a href="/mixing/reservar/?service=recording-mix-master">Reservar cita ↗</a>
         </article>
         <article class="price-card reveal">
           <div class="price-top"><span>02</span><span>Trabajo a distancia</span></div>
           <h3>Mix<br>+ Master</h3>
           <div class="price"><strong>60</strong><span>€</span><small>/ canción</small></div>
           <p>Envíame las pistas bien exportadas y recibirás la mezcla y el master listos para publicar.</p>
-          <a href="#contacto">Enviar proyecto ↓</a>
+          <a href="/mixing/reservar/?service=remote-mix-master">Enviar proyecto ↗</a>
         </article>
         <article class="price-card price-card-pack reveal">
           <div class="price-top"><span>03</span><span>EP / Mixtape / Álbum</span></div>
           <h3>Más de<br>5 canciones</h3>
           <div class="pack-mark" aria-hidden="true">5+</div>
           <p>Contacta conmigo para preparar un pack adaptado al número de temas y al estado del proyecto.</p>
-          <a href="#contacto">Consultar packs ↓</a>
+          <a href="/mixing/reservar/?service=project-pack">Consultar packs ↗</a>
         </article>
       </div>
     </section>
@@ -147,6 +207,21 @@
       </ol>
     </section>
 
+    <section class="mixing-faq section" id="faq" aria-labelledby="faq-title">
+      <div class="section-label dark reveal"><span>06</span><span>Preguntas frecuentes</span></div>
+      <div class="faq-heading">
+        <h2 id="faq-title" class="display-title reveal">Antes de<br>empezar.</h2>
+        <p class="reveal">Lo esencial para preparar el proyecto y entender cómo funciona la solicitud.</p>
+      </div>
+      <div class="faq-list">
+        <details class="reveal"><summary>¿Cómo preparo las pistas?<span aria-hidden="true">+</span></summary><p>Exporta todas las pistas desde el mismo punto de inicio, sin limitador en el master y con nombres claros. Si algo necesita otra preparación, te lo indicaré antes de comenzar.</p></details>
+        <details class="reveal"><summary>¿Cuántas revisiones incluye?<span aria-hidden="true">+</span></summary><p>Las revisiones se acuerdan antes de empezar según el estado y alcance del proyecto; no se aplica una cifra fija a todos los trabajos.</p></details>
+        <details class="reveal"><summary>¿Puedo trabajar a distancia?<span aria-hidden="true">+</span></summary><p>Sí. El servicio Mix + Master remoto está pensado para recibir las pistas y referencias mediante un enlace de descarga.</p></details>
+        <details class="reveal"><summary>¿La solicitud queda confirmada al enviarla?<span aria-hidden="true">+</span></summary><p>No. La solicitud queda pendiente hasta que Pedro revise el material y confirme la sesión por correo o teléfono.</p></details>
+        <details class="reveal"><summary>¿Cómo funcionan los proyectos de más de cinco temas?<span aria-hidden="true">+</span></summary><p>Se prepara un pack a medida según el número de canciones, el material disponible y el calendario del proyecto.</p></details>
+      </div>
+    </section>
+
     <section class="studio-contact" id="contacto" aria-labelledby="contact-title">
       <div class="contact-symbol" aria-hidden="true">:(</div>
       <div class="contact-copy reveal">
@@ -154,13 +229,15 @@
         <h2 id="contact-title">Vamos a<br>terminarlo.</h2>
         <p>Envíame una demo, una referencia y cuéntame en qué punto está el proyecto. Para más de cinco canciones, pregúntame por los packs.</p>
         <div class="button-row contact-actions">
-          <a class="button button-red" href="tel:+34685585342">Llamar · 685 585 342 ↗</a>
+          <a class="button button-red" href="/mixing/reservar/" data-booking-link>Reserva tu sesión ↗</a>
+          <a class="button button-outline" href="tel:+34685585342">Llamar · 685 585 342 ↗</a>
           <a class="button button-outline" href="https://www.instagram.com/afrxpx/" target="_blank" rel="noreferrer">Escribir por Instagram ↗</a>
         </div>
       </div>
       <div class="contact-links reveal">
         <a class="phone-link" href="tel:+34685585342"><span>Reservas por teléfono</span><strong>685 585 342 ↗</strong></a>
-        <a href="mailto:itsafrxpx@gmail.com"><span>Correo</span><strong>ITSAFRXPX@GMAIL.COM ↗</strong></a>
+        <a href="mailto:itsafrxpx@gmail.com" data-mixing-email><span>Correo de audio</span><strong>ITSAFRXPX@GMAIL.COM ↗</strong></a>
+        <a href="mailto:contacto@afropxmusic.com" data-artist-email data-artist-email-text="false"><span>Reservas web</span><strong>CONTACTO@AFROPXMUSIC.COM ↗</strong></a>
         <a href="https://www.instagram.com/afrxpx/" target="_blank" rel="noreferrer"><span>Instagram personal</span><strong>@afrxpx ↗</strong></a>
         <a href="https://www.instagram.com/afrxstudios/" target="_blank" rel="noreferrer"><span>Instagram del estudio</span><strong>@afrxstudios ↗</strong></a>
         <a href="https://www.youtube.com/playlist?list=PLzR8aKU-OlakUtH8rULCFA4Pr3e8dzuwP" target="_blank" rel="noreferrer"><span>Portfolio</span><strong>YouTube ↗</strong></a>
@@ -170,7 +247,7 @@
 
   <footer class="site-footer site-footer-studio">
     <div class="footer-brand">PEDRO<span>/AUDIO</span></div>
-    <div class="footer-links"><a href="../index.html">AfroPX ↗</a><a href="#servicios">Servicios</a><a href="#tarifas">Tarifas</a><a href="#portfolio">Trabajos</a></div>
+    <div class="footer-links"><a href="/">AfroPX ↗</a><a href="/mixing/reservar/">Reservar</a><a href="#servicios">Servicios</a><a href="#tarifas">Tarifas</a><a href="#portfolio">Trabajos</a><a href="/legal/privacidad/">Privacidad</a><a href="/legal/aviso-legal/">Aviso legal</a></div>
     <div class="footer-meta"><span>© <span data-year></span> Pedro</span><a href="#top">Volver arriba ↑</a></div>
   </footer>
 </body>
