@@ -32,7 +32,7 @@ La guía completa está en [`GUIA-PUBLICACION.md`](GUIA-PUBLICACION.md).
 - `index.html`: página de artista.
 - `mixing/index.html`: servicios de Pedro como ingeniero de audio.
 - `lanzamientos/index.html`: archivo y acceso a los lanzamientos.
-- `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/index.html`: landing y enlaces editables de preguardado y estreno.
+- `lanzamientos/a-la-gente-buena-le-pasan-cosas-malas/index.html`: landing y enlaces editables de preguardado y YouTube.
 - `styles.css`: diseño y adaptación responsive.
 - `script.js`: menú, transiciones y pequeños efectos.
 - `assets/`: fotografías, arte, icono y vista previa social.
@@ -46,7 +46,7 @@ Para una revisión rápida se puede abrir `index.html`. Antes de publicar, es pr
 ## Datos públicos incluidos
 
 - Instagram artístico: `@afrxpx`
-- Correo artístico: `afropxoficial@gmail.com`
+- Correo artístico: `contacto@afropxmusic.com`
 - Instagram del estudio: `@afrxstudios`
 - Teléfono de reservas: `685 585 342`
 - Correo de Mixing: publicado exclusivamente dentro de `/mixing/`
