@@ -17,11 +17,15 @@ BOOKING_NOTIFICATION_EMAIL=contacto@afropxmusic.com
 # Protección y privacidad
 RATE_LIMIT_SALT=replace-with-a-long-local-random-value
 
-# Cloudflare Access para /admin y /api/admin/*
-CF_ACCESS_TEAM_DOMAIN=your-team.cloudflareaccess.com
+# Acceso local de prueba. No reutilices aquí la contraseña de producción.
+ADMIN_PASSWORD=replace-with-a-local-password
+ADMIN_SESSION_SECRET=replace-with-at-least-32-random-characters
+ADMIN_EMAILS=contacto@afropxmusic.com
+ADMIN_BYPASS=false
+
+# Cloudflare Access, opcional como segunda capa.
+CF_ACCESS_TEAM_DOMAIN=
 CF_ACCESS_AUD=
-ADMIN_EMAILS=
-ADMIN_BYPASS=true
 
 # URL pública del panel incluida en los correos internos
 ADMIN_URL=http://127.0.0.1:8788/admin/

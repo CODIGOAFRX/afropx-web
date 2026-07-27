@@ -18,6 +18,7 @@
     "BOOKING_NOTIFICATION_EMAIL": "contacto@afropxmusic.com",
     "RESEND_FROM_EMAIL": "AfroPX <reservas@afropxmusic.com>",
     "ADMIN_URL": "https://afropxmusic.com/admin/",
+    "ADMIN_EMAILS": "contacto@afropxmusic.com",
     "TURNSTILE_BYPASS": "false",
     "ADMIN_BYPASS": "false"
   }

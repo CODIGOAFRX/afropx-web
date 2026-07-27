@@ -65,11 +65,13 @@ Configura valores separados para Production y Preview.
 | `RESEND_FROM_EMAIL` | texto | sí | `AfroPX <reservas@afropxmusic.com>` |
 | `BOOKING_NOTIFICATION_EMAIL` | texto | sí | `contacto@afropxmusic.com` |
 | `RATE_LIMIT_SALT` | secreto | sí | cadena aleatoria larga |
-| `CF_ACCESS_TEAM_DOMAIN` | texto | sí | `equipo.cloudflareaccess.com` |
-| `CF_ACCESS_AUD` | texto | sí | audiencia de la aplicación Access |
-| `ADMIN_EMAILS` | texto | sí | correos autorizados separados por coma |
+| `ADMIN_PASSWORD` | secreto | sí | contraseña exclusiva de al menos 12 caracteres |
+| `ADMIN_SESSION_SECRET` | secreto | sí | valor aleatorio de 32 caracteres o más |
+| `ADMIN_EMAILS` | texto | sí | `contacto@afropxmusic.com`, usado en auditoría |
 | `ADMIN_BYPASS` | texto | sí | `false` |
 | `ADMIN_URL` | texto | sí | `https://afropxmusic.com/admin/` |
+| `CF_ACCESS_TEAM_DOMAIN` | texto | no | dominio del equipo si se añade Access |
+| `CF_ACCESS_AUD` | texto | no | audiencia si se añade Access |
 
 No copies claves de producción a `.dev.vars`. Los bypasses nunca deben estar activos cuando `ENVIRONMENT=production`.
 
@@ -99,7 +101,23 @@ Prueba una reserva real y comprueba:
 - ausencia de spam;
 - estado `sent` en el panel.
 
-## 7. Proteger administración con Access
+## 7. Proteger la administración con contraseña
+
+En el proyecto Pages:
+
+1. Abre **Settings → Variables and Secrets → Add**.
+2. Escribe `ADMIN_PASSWORD`, pega una contraseña nueva, pulsa **Encrypt** y guarda. Nunca la añadas a Git ni a `wrangler.jsonc`.
+3. Genera un valor aleatorio de al menos 32 caracteres, añádelo como `ADMIN_SESSION_SECRET`, pulsa **Encrypt** y guarda.
+4. Añade `ADMIN_EMAILS=contacto@afropxmusic.com` como texto.
+5. Mantén `ADMIN_BYPASS=false`.
+6. Confirma que D1 está vinculado como `DB` y que `RATE_LIMIT_SALT` existe: los intentos incorrectos se limitan en D1.
+7. Despliega de nuevo y abre `/admin/`.
+
+La contraseña se compara en la Function y no se envía al bundle público. Al acertar se crea una cookie firmada `HttpOnly`, `SameSite=Strict`, `Secure` y con 12 horas de duración.
+
+Como cualquier contraseña compartida en un chat deja de ser completamente privada, usa un valor nuevo al configurar producción.
+
+## 8. Cloudflare Access opcional como segunda capa
 
 En Zero Trust:
 
@@ -111,17 +129,17 @@ En Zero Trust:
 6. Copia el Application Audience (AUD) a `CF_ACCESS_AUD`.
 7. Repite los correos autorizados en `ADMIN_EMAILS`.
 
-La doble lista es intencionada: Access bloquea en el perímetro y la Function vuelve a verificar JWT y correo.
+Access bloquea en el perímetro. La Function mantiene además la contraseña y la sesión firmada, por lo que las dos capas pueden convivir.
 
-## 8. Dominio
+## 9. Dominio
 
 Conecta `afropxmusic.com` al proyecto Pages y activa HTTPS. Verifica también el comportamiento de `www`; si se usa, redirígelo al dominio canónico o mantenlo en `ALLOWED_ORIGINS`.
 
-## 9. Preview
+## 10. Preview
 
 Para previews, añade el hostname exacto a `ALLOWED_ORIGINS` y al widget Turnstile. No uses datos reales ni el correo de producción si el entorno es de prueba.
 
-## 10. Despliegue y rollback
+## 11. Despliegue y rollback
 
 El push a `main` activa producción. Antes, completa [DEPLOYMENT-CHECKLIST.md](DEPLOYMENT-CHECKLIST.md).
 

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso privado — AfroPX / Audio</title>
+  <meta name="description" content="Acceso privado al panel de reservas de Pedro / Audio.">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://afropxmusic.com/admin/login/">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=2ea652d1a9">
+  <link rel="stylesheet" href="/assets/css/advanced.css?v=b948a978b1">
+  <script type="module" src="/assets/dist/admin-login.js?v=dccd3d13a4"></script>
+</head>
+<body class="admin-page admin-login-page">
+  <main class="admin-login-main">
+    <section class="admin-login-card" aria-labelledby="admin-login-title">
+      <a class="brand" href="/mixing/"><span>AFRO</span><span class="brand-mark">PX</span><small>/ PRIVATE</small></a>
+      <p class="eyebrow">Pedro / Audio</p>
+      <h1 id="admin-login-title">ACCESO<br>PRIVADO</h1>
+      <p class="admin-login-copy">Introduce la contraseña de administración para abrir las reservas.</p>
+      <form class="admin-login-form" data-admin-login-form>
+        <label for="admin-password">Contraseña</label>
+        <div class="admin-password-row">
+          <input id="admin-password" name="password" type="password" required maxlength="256" autocomplete="current-password" autofocus>
+          <button type="submit">Entrar</button>
+        </div>
+        <p class="admin-login-status" data-admin-login-status role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="admin-denied" data-admin-denied hidden role="alert" aria-labelledby="admin-denied-title">
+      <div>
+        <p class="eyebrow">Acceso denegado</p>
+        <h2 id="admin-denied-title">NO TIENES PERMISO PARA VER ESTO.</h2>
+        <button type="button" data-admin-retry>Volver a intentarlo</button>
+      </div>
+      <img src="/assets/images/admin/cara-triste.png" alt="Cara triste de la era A la gente buena le pasan cosas malas">
+    </section>
+  </main>
+</body>
+</html>

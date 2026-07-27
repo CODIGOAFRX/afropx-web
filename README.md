@@ -6,7 +6,7 @@ Dominio previsto: [afropxmusic.com](https://afropxmusic.com/)
 
 ## Estado
 
-La implementación y el build están terminados y funcionan en local. **La reserva no debe activarse en producción** hasta completar los datos legales, crear D1 y configurar Turnstile, Resend y Cloudflare Access. Consulta [configuración manual pendiente](docs/MANUAL-PENDING.md) y la [lista previa al despliegue](docs/DEPLOYMENT-CHECKLIST.md).
+La implementación y el build están terminados y funcionan en local. **La reserva no debe activarse en producción** hasta completar los datos legales, crear D1 y configurar Turnstile, Resend y los secretos del panel. Consulta [configuración manual pendiente](docs/MANUAL-PENDING.md) y la [lista previa al despliegue](docs/DEPLOYMENT-CHECKLIST.md).
 
 ## Qué incluye
 
@@ -16,7 +16,7 @@ La implementación y el build están terminados y funcionan en local. **La reser
 - D1 con protección transaccional frente a reservas dobles.
 - Correos interno y de recepción mediante Resend.
 - Turnstile, limitación de frecuencia y validación completa en servidor.
-- Panel privado bajo Cloudflare Access para reservas, estados, notas, bloqueos, excepciones, horarios y CSV.
+- Panel privado con contraseña en servidor, cookie firmada y Cloudflare Access opcional para reservas, estados, notas, bloqueos, excepciones, horarios y CSV.
 - Generadores locales de QR y tarjetas para redes.
 - Analítica propia agregada, sin cookies ni datos personales.
 - SEO técnico, datos estructurados, sitemap, cabeceras de seguridad y páginas legales.

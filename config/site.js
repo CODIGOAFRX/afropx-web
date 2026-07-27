@@ -105,7 +105,7 @@ export const SITE_CONFIG = {
     {
       id: "iktdchm",
       title: "IKTDCHM",
-      subtitle: "I Know That Death Can't Heal Me · con Martzz",
+      subtitle: "I Know The Death Can Hear Me · con Martzz",
       artist: "AfroPX",
       type: "Álbum",
       year: 2025,

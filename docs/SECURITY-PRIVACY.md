@@ -10,7 +10,7 @@
 - IP transformada mediante SHA-256 con sal privada; no se guarda en claro.
 - Identificador idempotente por envío.
 - Clave primaria por slot contra carreras.
-- Cloudflare Access + JWT verificado + allowlist de correo.
+- Contraseña verificada solo en servidor, cookie firmada `HttpOnly`, límite de intentos en D1 y Cloudflare Access opcional como segunda capa.
 - Auditoría de cambios administrativos.
 - Respuestas de API y administración con `no-store`.
 - CSP, HSTS, `nosniff`, denegación de framing y permisos del navegador restringidos.
@@ -23,7 +23,7 @@ La reserva puede guardar nombre, correo, teléfono, nombre artístico, número d
 
 La analítica guarda únicamente día, evento permitido, ruta, detalle saneado y contador. No se envían nombres, correos, teléfonos, IP, texto del proyecto ni identificadores de reserva.
 
-No se usan cookies analíticas. `sessionStorage` solo transfiere temporalmente la configuración de un QR al generador de tarjetas. Turnstile y Cloudflare Access pueden usar almacenamiento técnico propio en sus contextos.
+No se usan cookies analíticas. El panel usa una cookie técnica `HttpOnly`, `SameSite=Strict` y con caducidad de 12 horas. `sessionStorage` solo transfiere temporalmente la configuración de un QR al generador de tarjetas. Turnstile y Cloudflare Access pueden usar almacenamiento técnico propio en sus contextos.
 
 ## Conservación
 
@@ -46,8 +46,9 @@ No programes borrado automático hasta confirmar obligaciones fiscales, contract
 ## Administración
 
 - Protege tanto `/admin/*` como `/api/admin/*`.
-- Usa una cuenta con MFA.
-- Mantén `ADMIN_EMAILS` mínimo.
+- Guarda `ADMIN_PASSWORD` y `ADMIN_SESSION_SECRET` como secretos cifrados de Cloudflare, nunca en Git.
+- Usa una contraseña exclusiva y rota cualquier valor que se haya compartido por chat o texto.
+- Si activas Cloudflare Access como segunda capa, usa una cuenta con MFA y mantén `ADMIN_EMAILS` mínimo.
 - Rota API keys y `RATE_LIMIT_SALT` tras una exposición.
 - Revisa `admin_audit` cuando haya cambios inesperados.
 - `ADMIN_BYPASS` solo es válido con `ENVIRONMENT=development` y cabecera local explícita.

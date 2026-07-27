@@ -19,6 +19,8 @@ export interface Env {
   CF_ACCESS_TEAM_DOMAIN?: string;
   CF_ACCESS_AUD?: string;
   ADMIN_EMAILS?: string;
+  ADMIN_PASSWORD?: string;
+  ADMIN_SESSION_SECRET?: string;
   ADMIN_BYPASS?: string;
   ADMIN_URL?: string;
 }

@@ -13,7 +13,7 @@
 6. Último inicio real de lunes a viernes. Se usa provisionalmente `21:00`.
 7. Duración real de cada servicio. Se usan provisionalmente 60 minutos.
 8. Buffer deseado entre sesiones. Actualmente `0`.
-9. Correos exactos autorizados para administración.
+9. Correo usado para la auditoría administrativa.
 
 ## Cloudflare
 
@@ -24,7 +24,8 @@
 - Configurar Pages con build `npm run build` y output `dist`.
 - Añadir dominio y comprobar `www`.
 - Crear Turnstile y guardar ambas claves.
-- Crear Access para panel y API privada.
+- Guardar `ADMIN_PASSWORD` y `ADMIN_SESSION_SECRET` como secretos.
+- Opcional: crear Access como segunda capa para panel y API privada.
 - Generar `RATE_LIMIT_SALT`.
 
 ## Resend

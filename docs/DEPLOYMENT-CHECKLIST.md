@@ -15,8 +15,10 @@
 - [ ] `TURNSTILE_BYPASS=false`.
 - [ ] Dominio remitente verificado en Resend.
 - [ ] `RESEND_API_KEY` guardada como secret.
-- [ ] Cloudflare Access protege `/admin/*`.
-- [ ] Cloudflare Access protege `/api/admin/*`.
+- [ ] `ADMIN_PASSWORD` está guardada como secreto y no aparece en Git.
+- [ ] `ADMIN_SESSION_SECRET` es aleatorio, tiene 32 caracteres o más y está guardado como secreto.
+- [ ] La contraseña incorrecta queda limitada por D1 y muestra la pantalla de acceso denegado.
+- [ ] Opcional: Cloudflare Access protege `/admin/*` y `/api/admin/*` como segunda capa.
 - [ ] `ADMIN_BYPASS=false`.
 - [ ] `RATE_LIMIT_SALT` aleatoria configurada.
 - [ ] `ALLOWED_ORIGINS` contiene solo hostnames reales.

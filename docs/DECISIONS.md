@@ -28,9 +28,9 @@ La reserva es la fuente principal. Primero se guarda y después se envían corre
 
 Turnstile filtra automatización. D1 añade límite por acción y huella IP con sal, sin guardar la IP en claro. Son capas complementarias.
 
-## 8. Cloudflare Access más verificación en código
+## 8. Contraseña en servidor y Access opcional
 
-Access evita exponer la interfaz. La Function valida también firma, emisor, audiencia y allowlist para no depender únicamente de una regla de dashboard.
+La contraseña vive como secreto cifrado de Cloudflare, se compara solo en la Function y crea una cookie firmada `HttpOnly`. D1 limita los intentos fallidos. Cloudflare Access queda disponible como segunda capa con MFA sin ser obligatorio para el flujo principal.
 
 ## 9. Analítica agregada de primera parte
 

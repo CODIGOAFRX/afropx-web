@@ -19,7 +19,8 @@ const entryPoints = {
   "smart-links": "assets/js/pages/smart-links.js",
   qr: "assets/js/pages/qr.js",
   cards: "assets/js/pages/cards.js",
-  admin: "assets/js/pages/admin.js"
+  admin: "assets/js/pages/admin.js",
+  "admin-login": "assets/js/pages/admin-login.js"
 };
 
 const versionedAssets = [

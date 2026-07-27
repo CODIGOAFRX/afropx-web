@@ -60,7 +60,7 @@ Todas las respuestas de API usan `no-store`. Las mutaciones públicas exigen un 
 
 ### API privada
 
-`/api/admin/*` verifica el JWT de Cloudflare Access, su emisor, audiencia y correo permitido. Permite:
+`/admin/*` exige una cookie firmada creada tras verificar la contraseña exclusivamente en servidor. `/api/admin/*` vuelve a validar esa sesión; Cloudflare Access puede mantenerse como segunda capa opcional. El panel permite:
 
 - listar, filtrar y abrir reservas;
 - cambiar estado y notas;

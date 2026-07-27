@@ -123,8 +123,8 @@ Stripe está deshabilitado. Antes de activarlo hacen falta precios cerrados, té
 | No aparecen horas | reglas, bloqueos, excepción, duración y fecha pasada |
 | `SLOT_UNAVAILABLE` | otra reserva ganó la carrera; refrescar |
 | Turnstile falla | hostname, site key, secret y bypass `false` |
-| Panel 401/403 | Access, AUD, Team domain y `ADMIN_EMAILS` |
-| Panel 503 | faltan variables de Access |
+| Panel 401/403 | `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, D1, `RATE_LIMIT_SALT` y, si se usa, Access |
+| Panel 503 | faltan D1, `RATE_LIMIT_SALT` o los secretos de administración |
 | Correos `disabled` | no hay `RESEND_API_KEY` |
 | Correos `failed` | dominio/remitente/API key de Resend |
 | Cambio CSS no visible | ejecutar build; las URLs versionadas cambian por contenido |

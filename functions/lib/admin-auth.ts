@@ -3,6 +3,7 @@ import {
   jwtVerify,
   type JWTPayload
 } from "jose";
+import { readAdminSession } from "./admin-session";
 import { isDevelopment, isTrue } from "./env";
 import { HttpError } from "./http";
 import type { AdminIdentity, Env } from "./types";
@@ -40,6 +41,9 @@ export async function authenticateAdmin(
   request: Request,
   env: Env
 ): Promise<AdminIdentity> {
+  const passwordSession = await readAdminSession(request, env);
+  if (passwordSession) return passwordSession;
+
   if (
     isDevelopment(env) &&
     isTrue(env.ADMIN_BYPASS) &&
@@ -64,9 +68,9 @@ export async function authenticateAdmin(
 
   if (!teamDomain || !audience || allowedEmails.size === 0) {
     throw new HttpError(
-      503,
-      "ADMIN_AUTH_NOT_CONFIGURED",
-      "El acceso privado todavía no está configurado."
+      401,
+      "ADMIN_AUTH_REQUIRED",
+      "Introduce la contraseña para acceder al panel."
     );
   }
 

@@ -38,6 +38,12 @@ async function api(url, options = {}) {
     ? await response.json()
     : null;
   if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      const next = encodeURIComponent(
+        `${location.pathname}${location.search}`
+      );
+      location.replace(`/admin/login/?next=${next}`);
+    }
     throw new Error(
       payload?.error?.message || `Error del panel (${response.status}).`
     );
@@ -370,6 +376,17 @@ filterForm?.addEventListener("submit", async (event) => {
 document.querySelector("[data-admin-refresh]")?.addEventListener("click", () =>
   initialize()
 );
+document.querySelector("[data-admin-logout]")?.addEventListener("click", async () => {
+  try {
+    await fetch("/api/admin-session/logout", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { Accept: "application/json" }
+    });
+  } finally {
+    location.replace("/admin/login/");
+  }
+});
 document.querySelector("[data-dialog-close]")?.addEventListener("click", () =>
   dialog.close()
 );

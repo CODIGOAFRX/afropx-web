@@ -29,6 +29,7 @@ Cobertura funcional actual:
 - reserva idempotente;
 - carrera de doble reserva;
 - validación, contraste y nombres de archivo QR.
+- contraseña administrativa, cookie firmada y rechazo de cookies manipuladas.
 
 ## Prueba local completa
 
@@ -49,10 +50,11 @@ Comprueba:
 6. revisa resumen;
 7. envía;
 8. confirma ID legible;
-9. abre `/admin/`;
-10. localiza la reserva y revisa sus datos;
-11. intenta repetir exactamente la franja con otro ID y confirma `409`;
-12. cancela/rechaza y comprueba que la hora vuelve a quedar libre.
+9. abre `/admin/` y confirma que redirige al acceso privado;
+10. prueba una contraseña incorrecta y comprueba la pantalla de denegación;
+11. entra con la contraseña local y localiza la reserva;
+12. intenta repetir exactamente la franja con otro ID y confirma `409`;
+13. cancela/rechaza y comprueba que la hora vuelve a quedar libre.
 
 En local, el correo aparecerá `disabled` si no añades una key de Resend. Es el comportamiento previsto.
 
@@ -107,8 +109,8 @@ Después del despliegue:
 - comprueba status y JSON de cada API;
 - crea una reserva controlada;
 - confirma ambos correos;
-- verifica Access en ventana privada;
-- confirma que `/api/admin/*` no es accesible sin identidad;
+- verifica en una ventana privada que `/admin/` pide contraseña;
+- confirma que `/api/admin/*` no es accesible sin una sesión válida;
 - ejecuta una prueba de dos envíos simultáneos a la misma franja;
 - revisa cabeceras con DevTools;
 - valida JSON-LD y sitemap;
