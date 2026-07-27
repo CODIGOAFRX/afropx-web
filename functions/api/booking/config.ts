@@ -39,11 +39,29 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     context.env.TURNSTILE_SITE_KEY &&
       context.env.TURNSTILE_SECRET_KEY
   );
+  const ready =
+    databaseConfigured && (turnstileConfigured || turnstileBypass);
+  const technicalWarnings = [
+    ...(!databaseConfigured
+      ? [
+          "La base de datos D1 todavía no está vinculada. El formulario se mantiene desactivado."
+        ]
+      : []),
+    ...(!turnstileConfigured && !turnstileBypass
+      ? [
+          "Turnstile todavía no está configurado. El formulario se mantiene desactivado."
+        ]
+      : []),
+    ...(rules.some((rule) => rule.provisionalLastStart)
+      ? [
+          "La última hora de inicio entre semana es provisional y debe confirmarse en el panel."
+        ]
+      : [])
+  ];
 
   return json({
     ok: true,
-    ready:
-      databaseConfigured && (turnstileConfigured || turnstileBypass),
+    ready,
     capabilities: {
       databaseConfigured,
       turnstileConfigured,
@@ -78,23 +96,13 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     conditions: SITE_CONFIG.booking.conditions,
     privacyUrl: "/legal/privacidad/",
     contactEmail: SITE_CONFIG.site.contactEmail,
-    warnings: [
-      ...(!databaseConfigured
-        ? [
-            "La base de datos D1 todavía no está vinculada. El formulario se mantiene desactivado."
+    warnings: isDevelopment(context.env)
+      ? technicalWarnings
+      : ready
+        ? []
+        : [
+            "Las reservas online estarán disponibles muy pronto. Mientras tanto, puedes contactar por correo o teléfono."
           ]
-        : []),
-      ...(!turnstileConfigured && !turnstileBypass
-        ? [
-            "Turnstile todavía no está configurado. El formulario se mantiene desactivado."
-          ]
-        : []),
-      ...(rules.some((rule) => rule.provisionalLastStart)
-        ? [
-            "La última hora de inicio entre semana es provisional y debe confirmarse en el panel."
-          ]
-        : [])
-    ]
   });
 };
 

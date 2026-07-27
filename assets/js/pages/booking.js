@@ -621,7 +621,7 @@ async function start() {
     );
     app.dataset.ready = "false";
     serviceGrid.innerHTML =
-      '<p class="booking-inline-error">La función de reservas necesita Cloudflare Pages Functions y D1. No se ha enviado ningún dato.</p>';
+      '<p class="booking-inline-error">Las reservas online están temporalmente fuera de servicio. Puedes contactar por correo o teléfono.</p>';
   } finally {
     setBusy(false);
   }

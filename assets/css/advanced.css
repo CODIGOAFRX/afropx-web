@@ -84,6 +84,7 @@ select:disabled {
 .studio-booking-cta {
   align-self: flex-start;
   margin-top: 2rem;
+  white-space: nowrap;
 }
 
 .mixing-faq {
@@ -1035,7 +1036,7 @@ select:disabled {
   min-height: 5rem;
   padding: 1rem .2rem;
   display: grid;
-  grid-template-columns: 3.5rem 1fr minmax(8rem, .7fr) 1.5rem;
+  grid-template-columns: 3.5rem 1fr minmax(8rem, .7fr);
   align-items: center;
   gap: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, .2);
@@ -2162,7 +2163,7 @@ select:disabled {
   }
 
   .smart-platform {
-    grid-template-columns: 2.5rem 1fr 1.2rem;
+    grid-template-columns: 2.5rem 1fr;
   }
 
   .smart-platform em {

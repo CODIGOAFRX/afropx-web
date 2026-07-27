@@ -98,7 +98,7 @@ function internalEmail(booking: BookingRecord, env: Env) {
      <p><strong>Creada:</strong> ${escapeHtml(booking.created_at)}</p>
      <p style="margin-top:28px"><a href="${escapeHtml(
        adminUrl
-     )}" style="display:inline-block;background:#ff2d23;color:#080808;padding:14px 20px;text-decoration:none;font-weight:900;text-transform:uppercase">Abrir panel de reservas →</a></p>`
+     )}" style="display:inline-block;background:#ff2d23;color:#080808;padding:14px 20px;text-decoration:none;font-weight:900;text-transform:uppercase">Abrir panel de reservas</a></p>`
   );
 
   const text = [

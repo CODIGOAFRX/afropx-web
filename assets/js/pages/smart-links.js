@@ -43,7 +43,7 @@ function renderPlatforms() {
       anchor.innerHTML = `<span>${String(index + 1).padStart(
         2,
         "0"
-      )}</span><strong></strong><em></em><b aria-hidden="true">↗</b>`;
+      )}</span><strong></strong><em></em>`;
       anchor.querySelector("strong").textContent = platform.label;
       anchor.querySelector("em").textContent = platform.note;
       return anchor;
