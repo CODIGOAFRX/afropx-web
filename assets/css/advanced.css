@@ -1746,6 +1746,28 @@ select:disabled {
   padding-bottom: .85rem;
 }
 
+.admin-settings-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-settings-status {
+  min-height: 1.25rem;
+  margin: 0;
+  color: var(--grey);
+  font-size: .73rem;
+}
+
+.admin-settings-status[data-kind="success"] {
+  color: var(--success);
+}
+
+.admin-settings-status[data-kind="error"] {
+  color: var(--danger);
+}
+
 .admin-note {
   color: var(--grey);
   font-size: .73rem;

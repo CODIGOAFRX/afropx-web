@@ -10,8 +10,8 @@
   <link rel="canonical" href="https://afropxmusic.com/admin/">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css?v=2ea652d1a9">
-  <link rel="stylesheet" href="/assets/css/advanced.css?v=b948a978b1">
-  <script type="module" src="/assets/dist/admin.js?v=be00f94138"></script>
+  <link rel="stylesheet" href="/assets/css/advanced.css?v=b26060f403">
+  <script type="module" src="/assets/dist/admin.js?v=0d73f7a15a"></script>
 </head>
 <body class="admin-page">
   <a class="skip-link" href="#admin-main">Saltar al contenido</a>
@@ -86,7 +86,10 @@
           <label><span>Meses visibles</span><input name="maxMonthsAhead" type="number" min="1" max="24" required></label>
         </div>
         <div class="weekly-grid" data-weekly-grid></div>
-        <button type="submit">Guardar disponibilidad</button>
+        <div class="admin-settings-actions">
+          <button type="submit" data-settings-submit>Guardar disponibilidad</button>
+          <p class="admin-settings-status" data-settings-status role="status" aria-live="polite"></p>
+        </div>
       </form>
       <p class="admin-note">Al guardar, los horarios dejan de estar marcados como provisionales. Los cambios no mueven reservas ya creadas.</p>
     </section>

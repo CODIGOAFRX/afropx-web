@@ -14,6 +14,8 @@ const exceptionForm = document.querySelector("[data-exception-form]");
 const exceptionList = document.querySelector("[data-exception-list]");
 const settingsForm = document.querySelector("[data-settings-form]");
 const weeklyGrid = document.querySelector("[data-weekly-grid]");
+const settingsSubmit = document.querySelector("[data-settings-submit]");
+const settingsStatus = document.querySelector("[data-settings-status]");
 
 let currentBooking = null;
 let settingsState = null;
@@ -21,6 +23,11 @@ let settingsState = null;
 function showStatus(message, kind = "") {
   statusRegion.textContent = message;
   statusRegion.dataset.kind = kind;
+}
+
+function showSettingsStatus(message, kind = "") {
+  settingsStatus.textContent = message;
+  settingsStatus.dataset.kind = kind;
 }
 
 async function api(url, options = {}) {
@@ -452,15 +459,24 @@ settingsForm?.addEventListener("submit", async (event) => {
     maxMonthsAhead: Number(data.maxMonthsAhead),
     availability: getWeeklyValues()
   };
+  settingsSubmit.disabled = true;
+  settingsSubmit.textContent = "Guardando...";
+  showSettingsStatus("Guardando cambios...");
+  showStatus("Guardando disponibilidad...");
   try {
     const result = await api("/api/admin/settings", {
       method: "PATCH",
       body: JSON.stringify(payload)
     });
     renderSettings(result);
+    showSettingsStatus("Guardado correctamente.", "success");
     showStatus("Disponibilidad actualizada.", "success");
   } catch (error) {
+    showSettingsStatus(error.message, "error");
     showStatus(error.message, "error");
+  } finally {
+    settingsSubmit.disabled = false;
+    settingsSubmit.textContent = "Guardar disponibilidad";
   }
 });
 
