@@ -1872,6 +1872,21 @@ select:disabled {
   font-size: .68rem;
 }
 
+.admin-email-status {
+  min-height: 1.25rem;
+  color: var(--grey);
+  font-size: .78rem;
+}
+
+.admin-email-status[data-kind="sent"] {
+  color: var(--success);
+}
+
+.admin-email-status[data-kind="failed"],
+.admin-email-status[data-kind="disabled"] {
+  color: var(--danger);
+}
+
 .admin-actions {
   display: flex;
   flex-wrap: wrap;

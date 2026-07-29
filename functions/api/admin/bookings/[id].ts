@@ -1,4 +1,5 @@
 import { writeAudit } from "../../../lib/audit";
+import { sendBookingConfirmationEmail } from "../../../lib/email";
 import { requireDatabase } from "../../../lib/env";
 import {
   HttpError,
@@ -125,6 +126,13 @@ export const onRequestPatch: PagesFunction<Env, "id", AdminData> = async (
   }
 
   await db.batch(statements);
+  const updated = await loadBooking(db, current.id);
+  let delivery: Awaited<
+    ReturnType<typeof sendBookingConfirmationEmail>
+  > | null = null;
+  if (nextStatus !== current.status && nextStatus === "confirmed") {
+    delivery = await sendBookingConfirmationEmail(context.env, updated);
+  }
   await writeAudit(
     db,
     context.data.admin.email,
@@ -134,13 +142,15 @@ export const onRequestPatch: PagesFunction<Env, "id", AdminData> = async (
     {
       previousStatus: current.status,
       status: nextStatus,
-      notesChanged: privateNotes !== current.private_notes
+      notesChanged: privateNotes !== current.private_notes,
+      ...(delivery ? { customerEmail: delivery.status } : {})
     }
   );
 
   return json({
     ok: true,
-    booking: await loadBooking(db, current.id)
+    booking: await loadBooking(db, current.id),
+    delivery
   });
 };
 

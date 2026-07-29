@@ -13,6 +13,16 @@ interface DeliveryResult {
   errorCode: string | null;
 }
 
+function bookingStatusLabel(status: BookingRecord["status"]): string {
+  return {
+    pending: "Pendiente",
+    confirmed: "Confirmada",
+    rejected: "Rechazada",
+    cancelled: "Cancelada",
+    completed: "Completada"
+  }[status];
+}
+
 function escapeHtml(value: unknown): string {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -53,7 +63,7 @@ function emailFrame(title: string, body: string): string {
 function infoTable(booking: BookingRecord): string {
   const rows = [
     ["Reserva", booking.id],
-    ["Estado", booking.status === "pending" ? "Pendiente" : booking.status],
+    ["Estado", bookingStatusLabel(booking.status)],
     ["Servicio", booking.service_name],
     ["Precio", booking.price_label],
     ["Fecha", booking.local_date],
@@ -126,10 +136,42 @@ function internalEmail(booking: BookingRecord, env: Env) {
 }
 
 function customerEmail(booking: BookingRecord) {
+  if (booking.status === "confirmed") {
+    const html = emailFrame(
+      `Reserva confirmada ${booking.id}`,
+      `<p style="margin:0;color:#ff2d23;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase">Reserva confirmada</p>
+       <h1 style="margin:10px 0 0;font-size:34px;line-height:1">Tu sesión está confirmada.</h1>
+       <p style="font-size:17px;line-height:1.6">Hola, ${escapeHtml(
+         booking.customer_name
+       )}. Pedro ha aceptado tu solicitud y ha reservado este horario para tu proyecto.</p>
+       ${infoTable(booking)}
+       <p style="line-height:1.6">Si necesitas modificar o cancelar la reserva, responde a este correo indicando el identificador <strong>${escapeHtml(
+         booking.id
+       )}</strong> o escribe a <a href="mailto:contacto@afropxmusic.com" style="color:#23c4cc">contacto@afropxmusic.com</a>.</p>`
+    );
+
+    const text = [
+      `RESERVA CONFIRMADA · ${booking.id}`,
+      `Hola, ${booking.customer_name}. Pedro ha aceptado tu solicitud.`,
+      `Servicio: ${booking.service_name}`,
+      `Precio: ${booking.price_label}`,
+      `Fecha y hora: ${booking.local_date} ${booking.local_time} Europe/Madrid`,
+      `Contacto para cambios: contacto@afropxmusic.com`
+    ].join("\n");
+
+    return {
+      subject: `Reserva confirmada · ${booking.local_date} a las ${booking.local_time}`,
+      html,
+      text
+    };
+  }
+
   const statusMessage =
     booking.status === "pending"
       ? "Tu solicitud ha llegado y está pendiente de confirmación. La fecha no queda cerrada hasta que Pedro la confirme contigo."
-      : `Estado actual de tu solicitud: ${booking.status}.`;
+      : `Estado actual de tu solicitud: ${bookingStatusLabel(
+          booking.status
+        ).toLowerCase()}.`;
   const html = emailFrame(
     `Solicitud recibida ${booking.id}`,
     `<p style="margin:0;color:#ff2d23;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase">Solicitud recibida</p>
@@ -280,4 +322,21 @@ export async function sendBookingEmails(
   await saveDelivery(env.DB, booking.id, "customer", customer);
 
   return { internal, customer };
+}
+
+export async function sendBookingConfirmationEmail(
+  env: Env,
+  booking: BookingRecord
+): Promise<DeliveryResult> {
+  if (!env.DB) throw new Error("DATABASE_NOT_CONFIGURED");
+
+  const customer = await sendResendEmail(
+    env,
+    booking.customer_email,
+    customerEmail(booking),
+    `${booking.id}-customer-confirmed`
+  );
+  await saveDelivery(env.DB, booking.id, "customer", customer);
+
+  return customer;
 }

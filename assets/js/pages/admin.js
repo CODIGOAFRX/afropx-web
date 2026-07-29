@@ -8,6 +8,7 @@ const dialog = document.querySelector("[data-booking-dialog]");
 const dialogBody = document.querySelector("[data-booking-detail]");
 const noteField = document.querySelector("[data-booking-note]");
 const statusActions = document.querySelector("[data-booking-actions]");
+const emailStatus = document.querySelector("[data-email-status]");
 const blockForm = document.querySelector("[data-block-form]");
 const blockList = document.querySelector("[data-block-list]");
 const exceptionForm = document.querySelector("[data-exception-form]");
@@ -179,6 +180,22 @@ function renderBookingDetail(booking, emails) {
   noteField.value = booking.private_notes || "";
   renderStatusActions(booking.status);
   const emailLog = dialog.querySelector("[data-email-log]");
+  const latestCustomerEmail = emails.find(
+    (email) => email.recipient_type === "customer"
+  );
+  emailStatus.dataset.kind = latestCustomerEmail?.status || "";
+  emailStatus.textContent = latestCustomerEmail
+    ? {
+        sent: "Último correo al cliente: enviado.",
+        failed: `Último correo al cliente: ha fallado${
+          latestCustomerEmail.error_code
+            ? ` (${latestCustomerEmail.error_code})`
+            : ""
+        }.`,
+        disabled:
+          "Correos desactivados: falta configurar el proveedor de envío."
+      }[latestCustomerEmail.status] || ""
+    : "Todavía no hay intentos de correo al cliente.";
   emailLog.textContent = emails.length
     ? emails
         .map(
@@ -247,7 +264,20 @@ async function updateBooking(changes) {
     renderBookingDetail(detail.booking, detail.emails);
     await refreshBookings();
     await refreshSummary();
-    showStatus("Reserva actualizada.", "success");
+    if (changes.status === "confirmed" && payload.delivery) {
+      showStatus(
+        {
+          sent: "Reserva confirmada y correo enviado al cliente.",
+          failed:
+            "Reserva confirmada, pero el correo ha fallado. Revisa el registro.",
+          disabled:
+            "Reserva confirmada, pero los correos siguen desactivados."
+        }[payload.delivery.status] || "Reserva confirmada.",
+        payload.delivery.status === "sent" ? "success" : "error"
+      );
+    } else {
+      showStatus("Reserva actualizada.", "success");
+    }
   } catch (error) {
     showStatus(error.message, "error");
   }
